@@ -9,3 +9,5 @@ The website is primarily to display for all players, main and alts, their curren
 Main Characters, dkp, and attendance percentage column are sortable.  Players will also be able to be grouped by class, 
 Armor ie Plate, chain, leather, silk, and Class Type: Tank, Healer, melee, hybrid. Website will also be able to search 
 for previously won items and view who won it, for how much and when did they win it.
+
+One will have to change the configuration string in the app.config file as it points to an azure database.
