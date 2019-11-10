@@ -45,9 +45,28 @@
             this.DKPAward = new System.Windows.Forms.NumericUpDown();
             this.labelDKPAmount = new System.Windows.Forms.Label();
             this.checkBoxWaitlist = new System.Windows.Forms.CheckBox();
+            this.buttonBidState = new System.Windows.Forms.Button();
+            this.BackgroundWorkerBidding = new System.ComponentModel.BackgroundWorker();
+            this.txtAddItem = new System.Windows.Forms.TextBox();
+            this.ButtonAddItem = new System.Windows.Forms.Button();
+            this.listBoxItems = new System.Windows.Forms.ListBox();
+            this.ButtonBidPrep = new System.Windows.Forms.Button();
+            this.TabItems = new System.Windows.Forms.TabControl();
+            this.Tab1 = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DKPAward)).BeginInit();
+            this.TabItems.SuspendLayout();
+            this.Tab1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -62,7 +81,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(14, 5, 0, 5);
-            this.menuStrip1.Size = new System.Drawing.Size(1310, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(1139, 29);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -114,11 +133,11 @@
             this.toolStripRaidStatus,
             this.toolStripOpenRaidInfo});
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.statusStrip1.Location = new System.Drawing.Point(0, 699);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 490);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.statusStrip1.Size = new System.Drawing.Size(1310, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1139, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -132,12 +151,12 @@
             // toolStripOpenRaidInfo
             // 
             this.toolStripOpenRaidInfo.Name = "toolStripOpenRaidInfo";
-            this.toolStripOpenRaidInfo.Size = new System.Drawing.Size(172, 17);
-            this.toolStripOpenRaidInfo.Text = "Open Raid: Kael/PoG 11/7/2019";
+            this.toolStripOpenRaidInfo.Size = new System.Drawing.Size(140, 17);
+            this.toolStripOpenRaidInfo.Text = "Current Open Raid: None";
             // 
             // buttonRaid
             // 
-            this.buttonRaid.Location = new System.Drawing.Point(1129, 32);
+            this.buttonRaid.Location = new System.Drawing.Point(958, 54);
             this.buttonRaid.Name = "buttonRaid";
             this.buttonRaid.Size = new System.Drawing.Size(169, 44);
             this.buttonRaid.TabIndex = 2;
@@ -147,7 +166,7 @@
             // 
             // labelDKPheader
             // 
-            this.labelDKPheader.Location = new System.Drawing.Point(1081, 94);
+            this.labelDKPheader.Location = new System.Drawing.Point(910, 116);
             this.labelDKPheader.Name = "labelDKPheader";
             this.labelDKPheader.Size = new System.Drawing.Size(217, 27);
             this.labelDKPheader.TabIndex = 3;
@@ -157,7 +176,7 @@
             // checkBoxAttendence
             // 
             this.checkBoxAttendence.AutoSize = true;
-            this.checkBoxAttendence.Location = new System.Drawing.Point(1129, 125);
+            this.checkBoxAttendence.Location = new System.Drawing.Point(958, 147);
             this.checkBoxAttendence.Name = "checkBoxAttendence";
             this.checkBoxAttendence.Size = new System.Drawing.Size(130, 19);
             this.checkBoxAttendence.TabIndex = 4;
@@ -166,7 +185,7 @@
             // 
             // buttonImportRaidDump
             // 
-            this.buttonImportRaidDump.Location = new System.Drawing.Point(1034, 209);
+            this.buttonImportRaidDump.Location = new System.Drawing.Point(863, 231);
             this.buttonImportRaidDump.Name = "buttonImportRaidDump";
             this.buttonImportRaidDump.Size = new System.Drawing.Size(264, 38);
             this.buttonImportRaidDump.TabIndex = 5;
@@ -176,7 +195,7 @@
             // 
             // DKPAward
             // 
-            this.DKPAward.Location = new System.Drawing.Point(1169, 253);
+            this.DKPAward.Location = new System.Drawing.Point(998, 275);
             this.DKPAward.Maximum = new decimal(new int[] {
             20,
             0,
@@ -199,7 +218,7 @@
             // labelDKPAmount
             // 
             this.labelDKPAmount.AutoSize = true;
-            this.labelDKPAmount.Location = new System.Drawing.Point(1104, 255);
+            this.labelDKPAmount.Location = new System.Drawing.Point(933, 277);
             this.labelDKPAmount.Name = "labelDKPAmount";
             this.labelDKPAmount.Size = new System.Drawing.Size(49, 15);
             this.labelDKPAmount.TabIndex = 7;
@@ -209,19 +228,186 @@
             // 
             this.checkBoxWaitlist.AutoSize = true;
             this.checkBoxWaitlist.Enabled = false;
-            this.checkBoxWaitlist.Location = new System.Drawing.Point(1129, 165);
+            this.checkBoxWaitlist.Location = new System.Drawing.Point(958, 187);
             this.checkBoxWaitlist.Name = "checkBoxWaitlist";
             this.checkBoxWaitlist.Size = new System.Drawing.Size(108, 19);
             this.checkBoxWaitlist.TabIndex = 8;
             this.checkBoxWaitlist.Text = "Include Waitlist";
             this.checkBoxWaitlist.UseVisualStyleBackColor = true;
             // 
+            // buttonBidState
+            // 
+            this.buttonBidState.Enabled = false;
+            this.buttonBidState.Location = new System.Drawing.Point(433, 32);
+            this.buttonBidState.Name = "buttonBidState";
+            this.buttonBidState.Size = new System.Drawing.Size(141, 43);
+            this.buttonBidState.TabIndex = 9;
+            this.buttonBidState.Text = "Open Bidding";
+            this.buttonBidState.UseVisualStyleBackColor = true;
+            this.buttonBidState.Click += new System.EventHandler(this.buttonBidState_Click);
+            // 
+            // BackgroundWorkerBidding
+            // 
+            this.BackgroundWorkerBidding.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackgroundWorkerBidding_DoWork);
+            // 
+            // txtAddItem
+            // 
+            this.txtAddItem.Location = new System.Drawing.Point(519, 151);
+            this.txtAddItem.Name = "txtAddItem";
+            this.txtAddItem.Size = new System.Drawing.Size(264, 21);
+            this.txtAddItem.TabIndex = 11;
+            // 
+            // ButtonAddItem
+            // 
+            this.ButtonAddItem.Location = new System.Drawing.Point(708, 178);
+            this.ButtonAddItem.Name = "ButtonAddItem";
+            this.ButtonAddItem.Size = new System.Drawing.Size(75, 23);
+            this.ButtonAddItem.TabIndex = 12;
+            this.ButtonAddItem.Text = "Add Item";
+            this.ButtonAddItem.UseVisualStyleBackColor = true;
+            this.ButtonAddItem.Click += new System.EventHandler(this.ButtonAddItem_Click);
+            // 
+            // listBoxItems
+            // 
+            this.listBoxItems.FormattingEnabled = true;
+            this.listBoxItems.ItemHeight = 15;
+            this.listBoxItems.Location = new System.Drawing.Point(519, 222);
+            this.listBoxItems.Name = "listBoxItems";
+            this.listBoxItems.Size = new System.Drawing.Size(264, 109);
+            this.listBoxItems.Sorted = true;
+            this.listBoxItems.TabIndex = 13;
+            // 
+            // ButtonBidPrep
+            // 
+            this.ButtonBidPrep.Location = new System.Drawing.Point(578, 337);
+            this.ButtonBidPrep.Name = "ButtonBidPrep";
+            this.ButtonBidPrep.Size = new System.Drawing.Size(153, 32);
+            this.ButtonBidPrep.TabIndex = 14;
+            this.ButtonBidPrep.Text = "Bid Prep";
+            this.ButtonBidPrep.UseVisualStyleBackColor = true;
+            this.ButtonBidPrep.Click += new System.EventHandler(this.ButtonBidPrep_Click);
+            // 
+            // TabItems
+            // 
+            this.TabItems.Controls.Add(this.Tab1);
+            this.TabItems.ItemSize = new System.Drawing.Size(150, 20);
+            this.TabItems.Location = new System.Drawing.Point(13, 125);
+            this.TabItems.Multiline = true;
+            this.TabItems.Name = "TabItems";
+            this.TabItems.SelectedIndex = 0;
+            this.TabItems.Size = new System.Drawing.Size(475, 349);
+            this.TabItems.TabIndex = 15;
+            // 
+            // Tab1
+            // 
+            this.Tab1.Controls.Add(this.dataGridView1);
+            this.Tab1.Location = new System.Drawing.Point(4, 24);
+            this.Tab1.Name = "Tab1";
+            this.Tab1.Padding = new System.Windows.Forms.Padding(3);
+            this.Tab1.Size = new System.Drawing.Size(467, 321);
+            this.Tab1.TabIndex = 0;
+            this.Tab1.Text = "Item1";
+            this.Tab1.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column7});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.ShowEditingIcon = false;
+            this.dataGridView1.Size = new System.Drawing.Size(461, 315);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column1.HeaderText = "Name";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column1.Width = 47;
+            // 
+            // Column2
+            // 
+            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column2.HeaderText = "Bid";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column2.Width = 31;
+            // 
+            // Column3
+            // 
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column3.HeaderText = "Status";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column3.Width = 47;
+            // 
+            // Column4
+            // 
+            this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column4.HeaderText = "DKP";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column4.Width = 38;
+            // 
+            // Column5
+            // 
+            this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column5.HeaderText = "30 Day";
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column5.Width = 51;
+            // 
+            // Column6
+            // 
+            this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column6.HeaderText = "60 Day";
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column6.Width = 51;
+            // 
+            // Column7
+            // 
+            this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Column7.HeaderText = "90 Day";
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column7.Width = 51;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1310, 721);
+            this.ClientSize = new System.Drawing.Size(1139, 512);
+            this.Controls.Add(this.TabItems);
+            this.Controls.Add(this.ButtonBidPrep);
+            this.Controls.Add(this.listBoxItems);
+            this.Controls.Add(this.ButtonAddItem);
+            this.Controls.Add(this.txtAddItem);
+            this.Controls.Add(this.buttonBidState);
             this.Controls.Add(this.checkBoxWaitlist);
             this.Controls.Add(this.labelDKPAmount);
             this.Controls.Add(this.DKPAward);
@@ -249,6 +435,9 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DKPAward)).EndInit();
+            this.TabItems.ResumeLayout(false);
+            this.Tab1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,6 +462,22 @@
         private System.Windows.Forms.Label labelDKPAmount;
         private System.Windows.Forms.CheckBox checkBoxWaitlist;
         private System.Windows.Forms.ToolStripStatusLabel toolStripOpenRaidInfo;
+        private System.Windows.Forms.Button buttonBidState;
+        private System.ComponentModel.BackgroundWorker BackgroundWorkerBidding;
+        private System.Windows.Forms.TextBox txtAddItem;
+        private System.Windows.Forms.Button ButtonAddItem;
+        private System.Windows.Forms.ListBox listBoxItems;
+        private System.Windows.Forms.Button ButtonBidPrep;
+        private System.Windows.Forms.TabControl TabItems;
+        private System.Windows.Forms.TabPage Tab1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
     }
 }
 

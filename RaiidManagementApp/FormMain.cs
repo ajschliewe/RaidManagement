@@ -17,6 +17,15 @@ namespace RaiidManagementApp
     {
         SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         int RaidId;
+        List<Bid> Item1;
+        List<Bid> Item2;
+        List<Bid> Item3;
+        List<Bid> Item4;
+        List<Bid> Item5;
+        List<Bid> Item6;
+        List<Bid> Item7;
+        List<Bid> Item8;
+        List<Bid> Item9;
         //storage location for raid dump files
         //https://ghoststoragedev.blob.core.windows.net/ghostblobstorage
         public FrmMain()
@@ -379,6 +388,119 @@ namespace RaiidManagementApp
             string dumptime = filename.Substring(z, 15).Replace("-", "");
             DateTime local = new DateTime(int.Parse(dumptime.Substring(0, 4)), int.Parse(dumptime.Substring(4, 2)), int.Parse(dumptime.Substring(6, 2)), int.Parse(dumptime.Substring(8, 2)), int.Parse(dumptime.Substring(10, 2)), int.Parse(dumptime.Substring(12, 2)), DateTimeKind.Local);
             return TimeZoneInfo.ConvertTimeToUtc(local);
+        }
+
+        private void buttonBidState_Click(object sender, EventArgs e)
+        {
+            switch (buttonBidState.Text)
+            {
+                case "Open Bidding":
+                    Cursor.Current = Cursors.WaitCursor;
+                    BackgroundWorkerBidding.RunWorkerAsync();
+                    buttonBidState.Text = "Close Bidding";
+                    Cursor.Current = Cursors.Default;
+                    break;
+                case "Close Bidding":
+                    readfile = false;
+                    Cursor.Current = Cursors.WaitCursor;
+                    buttonBidState.Text = "Open Bidding";
+                    Cursor.Current = Cursors.Default;
+                    break;
+            }
+        }
+        bool readfile = false;
+        private void BackgroundWorkerBidding_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string filename = Properties.Settings.Default.LogFileFolder + "\\eqlog_" + Properties.Settings.Default.CharacterName + "_" + Properties.Settings.Default.GameServerName + ".txt";
+            FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            StreamReader sr = new StreamReader(fs);
+            sr.BaseStream.Position = sr.BaseStream.Length;
+            readfile = true;
+            string line;
+            do
+            {
+                line = sr.ReadLine();
+                if(line != null)
+                {
+
+                }
+
+            } while (readfile == true);
+            readfile = true;
+        }
+
+        private void ButtonBidPrep_Click(object sender, EventArgs e)
+        {
+            int count = listBoxItems.Items.Count;
+            TabItems.TabPages[0].Text = listBoxItems.Items[0].ToString();
+            for (int i = 1; i < count;i++)
+            {
+                TabItems.TabPages.Add(listBoxItems.Items[i].ToString());
+                DataGridView dgv = new DataGridView();
+                TabItems.TabPages[i].Controls.Add(dgv);
+                dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dgv.AllowUserToAddRows = false;
+                dgv.AllowUserToDeleteRows = false;
+                dgv.AllowUserToOrderColumns = false;
+                dgv.ReadOnly = true;
+                dgv.Dock = DockStyle.Fill;
+                DataGridViewTextBoxColumn col1 = new DataGridViewTextBoxColumn()
+                {
+                    Name = "Column1",
+                    HeaderText = "Name",
+                    SortMode = DataGridViewColumnSortMode.NotSortable
+                };                
+                dgv.Columns.Add(col1);
+                DataGridViewTextBoxColumn col2 = new DataGridViewTextBoxColumn()
+                {
+                    Name = "Column2",
+                    HeaderText = "Bid",
+                    SortMode = DataGridViewColumnSortMode.NotSortable
+                };
+                dgv.Columns.Add(col2);
+                DataGridViewTextBoxColumn col3 = new DataGridViewTextBoxColumn()
+                {
+                    Name = "Column3",
+                    HeaderText = "Status",
+                    SortMode = DataGridViewColumnSortMode.NotSortable
+                };
+                dgv.Columns.Add(col3);
+                DataGridViewTextBoxColumn col4 = new DataGridViewTextBoxColumn()
+                {
+                    Name = "Column4",
+                    HeaderText = "DKP",
+                    SortMode = DataGridViewColumnSortMode.NotSortable
+                };
+                dgv.Columns.Add(col4);
+                DataGridViewTextBoxColumn col5 = new DataGridViewTextBoxColumn()
+                {
+                    Name = "Column5",
+                    HeaderText = "30 Day",
+                    SortMode = DataGridViewColumnSortMode.NotSortable
+                };
+                dgv.Columns.Add(col5);
+                DataGridViewTextBoxColumn col6 = new DataGridViewTextBoxColumn()
+                {
+                    Name = "Column6",
+                    HeaderText = "60 Day",
+                    SortMode = DataGridViewColumnSortMode.NotSortable
+                };
+                dgv.Columns.Add(col6);
+                DataGridViewTextBoxColumn col7 = new DataGridViewTextBoxColumn()
+                {
+                    Name = "Column7",
+                    HeaderText = "90 Day",
+                    SortMode = DataGridViewColumnSortMode.NotSortable
+                };
+                dgv.Columns.Add(col7);
+            }
+        }
+
+        private void ButtonAddItem_Click(object sender, EventArgs e)
+        {
+            listBoxItems.Items.Add(txtAddItem.Text);
+            txtAddItem.Text = null;
+            txtAddItem.Focus();
         }
     }
 }
