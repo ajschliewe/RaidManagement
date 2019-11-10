@@ -12,5 +12,6 @@ namespace RaiidManagementApp
         public string Item;
         public int? Amount;
         public string modifiers;
+        public DateTime BidTime;
     }
 }

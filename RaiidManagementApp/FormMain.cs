@@ -17,15 +17,8 @@ namespace RaiidManagementApp
     {
         SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["MyConnection"].ConnectionString);
         int RaidId;
-        List<Bid> Item1;
-        List<Bid> Item2;
-        List<Bid> Item3;
-        List<Bid> Item4;
-        List<Bid> Item5;
-        List<Bid> Item6;
-        List<Bid> Item7;
-        List<Bid> Item8;
-        List<Bid> Item9;
+        List<string> ListItems = new List<string>();
+        List<Bid> ListBids = new List<Bid>();
         //storage location for raid dump files
         //https://ghoststoragedev.blob.core.windows.net/ghostblobstorage
         public FrmMain()
@@ -396,6 +389,10 @@ namespace RaiidManagementApp
             {
                 case "Open Bidding":
                     Cursor.Current = Cursors.WaitCursor;
+                    foreach(var ListBoxItem in listBoxItems.Items)
+                    {
+                        ListItems.Add(ListBoxItem.ToString());
+                    }
                     BackgroundWorkerBidding.RunWorkerAsync();
                     buttonBidState.Text = "Close Bidding";
                     Cursor.Current = Cursors.Default;
@@ -403,6 +400,7 @@ namespace RaiidManagementApp
                 case "Close Bidding":
                     readfile = false;
                     Cursor.Current = Cursors.WaitCursor;
+
                     buttonBidState.Text = "Open Bidding";
                     Cursor.Current = Cursors.Default;
                     break;
@@ -422,13 +420,73 @@ namespace RaiidManagementApp
                 line = sr.ReadLine();
                 if(line != null)
                 {
-
+                    if(line.Contains(" tells you, "))
+                    {
+                        Bid validbid = new Bid();
+                        if(ParseBid(line, out validbid)) 
+                        {
+                            if(!UpdateExistingBid(validbid)) { ListBids.Add(validbid); }
+                        }                       
+                    }
                 }
 
             } while (readfile == true);
             readfile = true;
         }
 
+        private bool ParseBid(string bid, out Bid x)
+        {
+            x = new Bid();
+            if (!ListItems.Any(bid.Contains)) { return false; }
+            foreach(string z in ListItems)
+            {
+                if(bid.IndexOf(z)>-1)
+                {
+                    x.Item = z;
+                    break;
+                }
+            }
+            x.BidTime = ParseDate(bid.Substring(5, 20));
+            bid = bid.Substring(bid.IndexOf(']') + 2);
+            x.Character = bid.Substring(0, bid.IndexOf(' '));
+            bid = bid.Substring(bid.IndexOf(x.Item) + x.Item.Length + 1);
+            if(int.TryParse(bid.Substring(0,bid.IndexOf(' ')), out int result))
+            {
+                x.Amount = result;
+            }
+            else
+            {
+                return false;
+            }
+
+            if(bid.EndsWith(" alt'") || bid.EndsWith(" Alt'")) { x.modifiers = "Alt"; }
+            return true;
+        }
+
+        private DateTime ParseDate(string timestamp)
+        {
+            int year = int.Parse(timestamp.Substring(timestamp.LastIndexOf(" ")));
+            string[] names = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
+            int month = Array.IndexOf(names, timestamp.Substring(0, 3)) + 1;
+            int day = int.Parse(timestamp.Substring(4, 2));
+            int hour = int.Parse(timestamp.Substring(7, 2));
+            int min = int.Parse(timestamp.Substring(10, 2));
+            int sec = int.Parse(timestamp.Substring(13, 2));
+
+            DateTime dateTime = new DateTime(year, month, day, hour, min, sec);
+            return dateTime;
+        }
+
+        private bool UpdateExistingBid(Bid newbid)
+        {
+            int idx = ListBids.FindIndex(a => a.Character == newbid.Character && a.Item == newbid.Item);
+            if(idx == -1) { return false; }
+            if(newbid.Amount < 1) { ListBids.RemoveAt(idx); return true; }
+            ListBids[idx].Amount = newbid.Amount;
+            ListBids[idx].BidTime = newbid.BidTime;
+            ListBids[idx].modifiers = newbid.modifiers;
+            return true;
+        }
         private void ButtonBidPrep_Click(object sender, EventArgs e)
         {
             int count = listBoxItems.Items.Count;
@@ -501,6 +559,28 @@ namespace RaiidManagementApp
             listBoxItems.Items.Add(txtAddItem.Text);
             txtAddItem.Text = null;
             txtAddItem.Focus();
+        }
+
+        private void ButtonRemoveItem_Click(object sender, EventArgs e)
+        {
+            if(listBoxItems.SelectedIndex > -1) { listBoxItems.Items.RemoveAt(listBoxItems.SelectedIndex); }
+        }
+
+        private void ButtonClearList_Click(object sender, EventArgs e)
+        {
+            listBoxItems.Items.Clear();
+        }
+
+        private void ButtonResetAll_Click(object sender, EventArgs e)
+        {
+            listBoxItems.Items.Clear();
+
+            while (TabItems.TabCount > 1)
+            {
+                TabItems.TabPages.RemoveAt(1);
+            }
+
+            TabItems.TabPages[0].Text = "Item1";
         }
     }
 }

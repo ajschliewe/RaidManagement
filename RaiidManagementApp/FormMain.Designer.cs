@@ -61,6 +61,9 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ButtonRemoveItem = new System.Windows.Forms.Button();
+            this.ButtonClearList = new System.Windows.Forms.Button();
+            this.ButtonResetAll = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DKPAward)).BeginInit();
@@ -279,7 +282,7 @@
             // 
             // ButtonBidPrep
             // 
-            this.ButtonBidPrep.Location = new System.Drawing.Point(578, 337);
+            this.ButtonBidPrep.Location = new System.Drawing.Point(519, 337);
             this.ButtonBidPrep.Name = "ButtonBidPrep";
             this.ButtonBidPrep.Size = new System.Drawing.Size(153, 32);
             this.ButtonBidPrep.TabIndex = 14;
@@ -396,12 +399,45 @@
             this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.Column7.Width = 51;
             // 
+            // ButtonRemoveItem
+            // 
+            this.ButtonRemoveItem.Location = new System.Drawing.Point(610, 178);
+            this.ButtonRemoveItem.Name = "ButtonRemoveItem";
+            this.ButtonRemoveItem.Size = new System.Drawing.Size(92, 23);
+            this.ButtonRemoveItem.TabIndex = 16;
+            this.ButtonRemoveItem.Text = "Remove Item";
+            this.ButtonRemoveItem.UseVisualStyleBackColor = true;
+            this.ButtonRemoveItem.Click += new System.EventHandler(this.ButtonRemoveItem_Click);
+            // 
+            // ButtonClearList
+            // 
+            this.ButtonClearList.Location = new System.Drawing.Point(519, 179);
+            this.ButtonClearList.Name = "ButtonClearList";
+            this.ButtonClearList.Size = new System.Drawing.Size(75, 23);
+            this.ButtonClearList.TabIndex = 17;
+            this.ButtonClearList.Text = "Clear List";
+            this.ButtonClearList.UseVisualStyleBackColor = true;
+            this.ButtonClearList.Click += new System.EventHandler(this.ButtonClearList_Click);
+            // 
+            // ButtonResetAll
+            // 
+            this.ButtonResetAll.Location = new System.Drawing.Point(679, 338);
+            this.ButtonResetAll.Name = "ButtonResetAll";
+            this.ButtonResetAll.Size = new System.Drawing.Size(104, 31);
+            this.ButtonResetAll.TabIndex = 18;
+            this.ButtonResetAll.Text = "Reset All";
+            this.ButtonResetAll.UseVisualStyleBackColor = true;
+            this.ButtonResetAll.Click += new System.EventHandler(this.ButtonResetAll_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1139, 512);
+            this.Controls.Add(this.ButtonResetAll);
+            this.Controls.Add(this.ButtonClearList);
+            this.Controls.Add(this.ButtonRemoveItem);
             this.Controls.Add(this.TabItems);
             this.Controls.Add(this.ButtonBidPrep);
             this.Controls.Add(this.listBoxItems);
@@ -478,6 +514,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.Button ButtonRemoveItem;
+        private System.Windows.Forms.Button ButtonClearList;
+        private System.Windows.Forms.Button ButtonResetAll;
     }
 }
 
