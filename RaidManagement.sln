@@ -11,11 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaidLibrary", "RaidLibrary\
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "RaidManagementDB", "RaidManagementDB\RaidManagementDB.sqlproj", "{7DE56535-F82D-4BAC-9ED3-08AFD3116A2F}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E46D1270-9B12-44EF-8CEA-91CA6753E781}"
-	ProjectSection(SolutionItems) = preProject
-		Load scripts.zip = Load scripts.zip
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
