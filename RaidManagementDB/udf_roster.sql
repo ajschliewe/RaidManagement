@@ -12,7 +12,7 @@ RETURNS @returntable TABLE
 )
 AS
 BEGIN
-	Declare @30cnt decimal(8,4);
+Declare @30cnt decimal(8,4);
 declare @60cnt decimal(8,4);
 declare @90cnt decimal(8,4);
 
@@ -21,16 +21,16 @@ set @60cnt = (Select count(ScheduleId) from Schedule s inner join Raid r on s.Ra
 set @90cnt = (Select count(ScheduleId) from Schedule s inner join Raid r on s.RaidId=r.RaidId where r.CloseTime is not null and s.TimeStamp > DATEADD(day,-90,SYSDATETIME()));
 
 with x as (Select c.Name, convert(decimal(8,4),count(*)/@30cnt) as pcnt30
-from Attendance a inner join Schedule s on a.ScheduleId=s.ScheduleId inner join raid r on s.RaidId=r.RaidId inner join Character c on a.CharacterId=c.CharacterId
+from Attendance a inner join Schedule s on a.ScheduleId=s.ScheduleId inner join Raid r on s.RaidId=r.RaidId inner join Character c on a.CharacterId=c.CharacterId
 where r.CloseTime is not null and s.TimeStamp > DATEADD(day,-30,SYSDATETIME())
 group by c.Name), y as (Select c.Name, convert(decimal(8,4),count(*)/@60cnt) as pcnt60
-from Attendance a inner join Schedule s on a.ScheduleId=s.ScheduleId inner join raid r on s.RaidId=r.RaidId inner join Character c on a.CharacterId=c.CharacterId
+from Attendance a inner join Schedule s on a.ScheduleId=s.ScheduleId inner join Raid r on s.RaidId=r.RaidId inner join Character c on a.CharacterId=c.CharacterId
 where r.CloseTime is not null and s.TimeStamp > DATEADD(day,-60,SYSDATETIME())
 group by c.Name), z as (Select c.Name, convert(decimal(8,4),count(*)/@90cnt) as pcnt90
-from Attendance a inner join Schedule s on a.ScheduleId=s.ScheduleId inner join raid r on s.RaidId=r.RaidId inner join Character c on a.CharacterId=c.CharacterId
+from Attendance a inner join Schedule s on a.ScheduleId=s.ScheduleId inner join Raid r on s.RaidId=r.RaidId inner join Character c on a.CharacterId=c.CharacterId
 where r.CloseTime is not null and s.TimeStamp > DATEADD(day,-90,SYSDATETIME())
 group by c.Name), currentdkp as (Select Characterid, sum(l.amount) as dkp
-from ledger l inner join Raid r on l.raidID=r.raidid
+from Ledger l inner join Raid r on l.raidID=r.raidid
 where r.closeTime is not null or (r.closetime is null and l.amount< 0)
 group by characterid)
 INSERT INTO @returntable

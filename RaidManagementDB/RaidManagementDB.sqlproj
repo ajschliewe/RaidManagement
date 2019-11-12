@@ -81,5 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="RaidManagementDB.publish.xml" />
+    <None Include="Sample Data\datafiles.zip" />
+    <None Include="Sample Data\readme.txt" />
   </ItemGroup>
 </Project>
