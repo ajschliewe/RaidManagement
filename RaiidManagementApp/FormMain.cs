@@ -243,6 +243,7 @@ namespace RaiidManagementApp
                 }
             }
             LoadDKP(players, (Int16)DKPAward.Value, sched, checkBoxAttendence.Checked);
+            // upload raid dump file for storage
             Cursor.Current = Cursors.Default;
         }
 
@@ -297,6 +298,8 @@ namespace RaiidManagementApp
             cmd.Dispose();
             return vs;
         }
+
+
         private void LoadDKP(List<Character> dump, Int16 award, int SchedID, bool isAttend)
         {
             string strDesc = "Attendance DKP";
@@ -400,12 +403,19 @@ namespace RaiidManagementApp
                 case "Close Bidding":
                     readfile = false;
                     Cursor.Current = Cursors.WaitCursor;
-
+                    List<DKPAttendance> listb = PopulateGrids();
                     buttonBidState.Text = "Open Bidding";
                     Cursor.Current = Cursors.Default;
                     break;
             }
         }
+        
+        private void CheckWinners()
+        {
+
+        }
+        
+        
         bool readfile = false;
         private void BackgroundWorkerBidding_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -563,7 +573,18 @@ namespace RaiidManagementApp
 
         private void ButtonRemoveItem_Click(object sender, EventArgs e)
         {
-            if(listBoxItems.SelectedIndex > -1) { listBoxItems.Items.RemoveAt(listBoxItems.SelectedIndex); }
+            if(listBoxItems.SelectedIndex > -1) 
+            { 
+                listBoxItems.Items.RemoveAt(listBoxItems.SelectedIndex);
+                foreach(TabPage tp in TabItems.TabPages)
+                {
+                    if(tp.Name == listBoxItems.SelectedItem.ToString())
+                    {
+                        TabItems.TabPages.Remove(tp);
+                        break;
+                    }
+                }
+            }
         }
 
         private void ButtonClearList_Click(object sender, EventArgs e)
@@ -582,5 +603,56 @@ namespace RaiidManagementApp
 
             TabItems.TabPages[0].Text = "Item1";
         }
-    }
+
+        private List<DKPAttendance> PopulateGrids()
+        {
+            List<DKPAttendance> listDKP = GetDKPAttendances();
+            foreach(TabPage tab in TabItems.TabPages)
+            {
+                var query = from a in listDKP
+                            join b in ListBids on a.name equals b.Character
+                            where b.Item == tab.Text
+                            select new DKPAttendance() {name = a.name, bidamount = b.Amount<a.dkp ? (int)b.Amount: a.dkp , status = b.forAlt == true ? "Alt" : a.status , dkp = a.dkp, pcnt30 = a.pcnt30, pcnt60 = a.pcnt60, pcnt90 = a.pcnt90 };
+                List<DKPAttendance> BidsDKP = query.ToList<DKPAttendance>();
+                BidsDKP.OrderBy(s => s.statusid).ThenByDescending(b => b.bidamount).ThenByDescending(d=>d.dkp).ThenByDescending(p=>p.pcnt30).ThenByDescending(q=>q.pcnt60);
+                
+                DataGridView dataGrid = (DataGridView)tab.Controls.OfType<DataGridView>();
+                dataGrid.AutoGenerateColumns = false;
+                dataGrid.DataSource = BidsDKP;
+                dataGrid.Columns[0].DataPropertyName = "name";
+                dataGrid.Columns[1].DataPropertyName = "bidamount";
+                dataGrid.Columns[2].DataPropertyName = "status";
+                dataGrid.Columns[3].DataPropertyName = "dkp";
+                dataGrid.Columns[4].DataPropertyName = "pcnt30";
+                dataGrid.Columns[5].DataPropertyName = "pcnt60";
+                dataGrid.Columns[6].DataPropertyName = "pcnt90";
+                dataGrid.Rows[0].Selected = true;
+            }
+            return listDKP;
+        }
+
+        private List<DKPAttendance> GetDKPAttendances()
+        {
+            SqlCommand cmd = new SqlCommand("usp_GetDKPAttendance", cn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlDataReader rdr = cmd.ExecuteReader();
+            List<DKPAttendance> dkp = new List<DKPAttendance>();
+            while (rdr.Read())
+            {
+                DKPAttendance clsDKP = new DKPAttendance();
+                clsDKP.name = rdr[0].ToString();
+                clsDKP.bidamount = 0;
+                clsDKP.status = rdr[1].ToString();
+                clsDKP.statusid = (int)rdr[2];
+                clsDKP.dkp = (int)rdr[3];
+                clsDKP.pcnt30 = (double)rdr[4];
+                clsDKP.pcnt60 = (double)rdr[5];
+                clsDKP.pcnt90 = (double)rdr[6];
+                dkp.Add(clsDKP);
+            }
+            rdr.Close();
+            cmd.Dispose();
+            return dkp;
+        }
+    }    
 }

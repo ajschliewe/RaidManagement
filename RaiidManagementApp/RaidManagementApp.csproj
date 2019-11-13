@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="Bid.cs" />
     <Compile Include="CharacterClass.cs" />
+    <Compile Include="DKPAttendance.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

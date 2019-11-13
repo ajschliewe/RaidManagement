@@ -12,6 +12,14 @@ namespace RaiidManagementApp
         public string Item;
         public int? Amount;
         public string modifiers;
-        public DateTime BidTime;
+        public DateTime BidTime;        
+
+        public bool forAlt
+        {
+            get
+            {
+                if (modifiers.IndexOf("alt") > -1) { return true; } else { return false; }
+            }
+        }
     }
 }
