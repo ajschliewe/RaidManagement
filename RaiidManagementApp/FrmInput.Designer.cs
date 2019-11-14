@@ -36,25 +36,27 @@
             // labelDescription
             // 
             this.labelDescription.AutoSize = true;
-            this.labelDescription.Location = new System.Drawing.Point(68, 90);
+            this.labelDescription.Location = new System.Drawing.Point(34, 47);
+            this.labelDescription.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelDescription.Name = "labelDescription";
-            this.labelDescription.Size = new System.Drawing.Size(502, 25);
+            this.labelDescription.Size = new System.Drawing.Size(248, 13);
             this.labelDescription.TabIndex = 0;
             this.labelDescription.Text = "Enter a Description of the Raid (max 50 characters)";
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(86, 169);
+            this.txtDescription.Location = new System.Drawing.Point(43, 88);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(465, 31);
+            this.txtDescription.Size = new System.Drawing.Size(234, 20);
             this.txtDescription.TabIndex = 1;
             // 
             // buttonOK
             // 
-            this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonOK.Location = new System.Drawing.Point(227, 247);
+            this.buttonOK.Location = new System.Drawing.Point(114, 128);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(75, 37);
+            this.buttonOK.Size = new System.Drawing.Size(38, 19);
             this.buttonOK.TabIndex = 2;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
@@ -62,18 +64,21 @@
             // 
             // FrmInput
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(678, 365);
+            this.ClientSize = new System.Drawing.Size(339, 190);
             this.ControlBox = false;
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.labelDescription);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmInput";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Raid Description";
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -36,8 +36,13 @@ namespace RaiidManagementApp
             if (txtDescription.Text.Length == 0)
             {
                 MessageBox.Show("No Description was entered. Please enter a brief description of the Raid.\nFor example, Plane of Time, or Test Server.", "Missing", MessageBoxButtons.OK);
+                return;
             }
-            else { this.Close(); }
+            else 
+            {
+                DialogResult = DialogResult.OK;
+                this.Close(); 
+            }
         }
     }
 }

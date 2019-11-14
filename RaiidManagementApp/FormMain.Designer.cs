@@ -240,7 +240,6 @@
             // 
             // buttonBidState
             // 
-            this.buttonBidState.Enabled = false;
             this.buttonBidState.Location = new System.Drawing.Point(433, 32);
             this.buttonBidState.Name = "buttonBidState";
             this.buttonBidState.Size = new System.Drawing.Size(141, 43);

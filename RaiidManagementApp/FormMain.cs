@@ -76,7 +76,7 @@ namespace RaiidManagementApp
                 {
                     if (frminput.ShowDialog() == DialogResult.OK)
                     {
-                        SqlCommand cmd = new SqlCommand("usp_CreateRaid", cn);
+                        SqlCommand cmd = new SqlCommand("usp_CreateNewRaid", cn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@Description", frminput.Description);
                         int x = cmd.ExecuteNonQuery();
@@ -574,16 +574,16 @@ namespace RaiidManagementApp
         private void ButtonRemoveItem_Click(object sender, EventArgs e)
         {
             if(listBoxItems.SelectedIndex > -1) 
-            { 
-                listBoxItems.Items.RemoveAt(listBoxItems.SelectedIndex);
+            {                 
                 foreach(TabPage tp in TabItems.TabPages)
                 {
-                    if(tp.Name == listBoxItems.SelectedItem.ToString())
+                    if(tp.Text == listBoxItems.SelectedItem.ToString())
                     {
                         TabItems.TabPages.Remove(tp);
                         break;
                     }
                 }
+                listBoxItems.Items.RemoveAt(listBoxItems.SelectedIndex);
             }
         }
 
