@@ -19,8 +19,6 @@ namespace RaiidManagementApp
         int RaidId;
         List<string> ListItems = new List<string>();
         List<Bid> ListBids = new List<Bid>();
-        //storage location for raid dump files
-        //https://ghoststoragedev.blob.core.windows.net/ghostblobstorage
         public FrmMain()
         {
             InitializeComponent();
@@ -228,12 +226,12 @@ namespace RaiidManagementApp
                 }
                 else if (sched < 0)
                 {
-                    DialogResult = MessageBox.Show("You are using a dump file that has already been used for attendance.\nDo you want to use the existing schedule entry?", "Duplicate File", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-                    if (DialogResult == DialogResult.Yes) { sched = Math.Abs(sched); } else { return; }
+                    DialogResult = MessageBox.Show("You are using a dump file that has already been used for attendance.\nA Dump file for attendance can only be used once.\nPlease Try Again.", "Error - Duplicate File", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
                 foreach (Character c in players)
                 {
-                    if (c.StatusName == "Alt" || c.StatusName == "Guest") { continue; }
+                    if (c.StatusName == "Guest") { continue; }
                     SqlCommand cmd = new SqlCommand("usp_AddNewAttendance", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Name", c.Name);
@@ -314,7 +312,7 @@ namespace RaiidManagementApp
                 Cursor.Current = Cursors.WaitCursor;
                 foreach (Character c in dump)
                 {
-                    if (c.StatusName == "Alt" || c.StatusName == "Guest") { continue; }
+                    if (c.StatusName == "Guest") { continue; }
                     SqlCommand cmd = new SqlCommand("usp_DKPAward", cn);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Name", c.Name);
@@ -436,7 +434,11 @@ namespace RaiidManagementApp
                         if(ParseBid(line, out validbid)) 
                         {
                             if(!UpdateExistingBid(validbid)) { ListBids.Add(validbid); }
-                        }                       
+                        }
+                        else
+                        {
+                            ListBoxInvalidBids.Items.Add(line);
+                        }
                     }
                 }
 
@@ -447,19 +449,21 @@ namespace RaiidManagementApp
         private bool ParseBid(string bid, out Bid x)
         {
             x = new Bid();
+            if (bid.Substring(0, 1) == "[") { bid = bid.Substring(bid.IndexOf(']') + 2); }
+            x.Character = bid.Substring(0, bid.IndexOf(" "));
+            bid = bid.Substring(bid.IndexOf("\'") + 1);
             if (!ListItems.Any(bid.Contains)) { return false; }
             foreach(string z in ListItems)
             {
                 if(bid.IndexOf(z)>-1)
                 {
                     x.Item = z;
+                    bid = bid.Substring(0,z.Length +1);
                     break;
                 }
             }
-            x.BidTime = ParseDate(bid.Substring(5, 20));
-            bid = bid.Substring(bid.IndexOf(']') + 2);
-            x.Character = bid.Substring(0, bid.IndexOf(' '));
-            bid = bid.Substring(bid.IndexOf(x.Item) + x.Item.Length + 1);
+            
+            bid = bid.Substring(x.Item.Length + 1);
             if(int.TryParse(bid.Substring(0,bid.IndexOf(' ')), out int result))
             {
                 x.Amount = result;
@@ -468,32 +472,30 @@ namespace RaiidManagementApp
             {
                 return false;
             }
+            bid = bid.Substring(bid.IndexOf(' ') + 1);
+            int idx = bid.IndexOf("alt-");
+            if ( idx >-1) 
+            {
+                string alt = bid.Substring(idx + 4, bid.IndexOf(' ', idx) - (idx + 4));
+                SqlCommand cmd = new SqlCommand("usp_CheckForOpenRaid", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue(Name, alt);
+                int intX = (int)cmd.ExecuteScalar();
+                if(intX == 1)
+                {
 
-            if(bid.EndsWith(" alt'") || bid.EndsWith(" Alt'")) { x.modifiers = "Alt"; }
+                }
+                cmd.Dispose();
+                x.modifiers = "Alt";
+            }
             return true;
         }
-
-        private DateTime ParseDate(string timestamp)
-        {
-            int year = int.Parse(timestamp.Substring(timestamp.LastIndexOf(" ")));
-            string[] names = System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.MonthNames;
-            int month = Array.IndexOf(names, timestamp.Substring(0, 3)) + 1;
-            int day = int.Parse(timestamp.Substring(4, 2));
-            int hour = int.Parse(timestamp.Substring(7, 2));
-            int min = int.Parse(timestamp.Substring(10, 2));
-            int sec = int.Parse(timestamp.Substring(13, 2));
-
-            DateTime dateTime = new DateTime(year, month, day, hour, min, sec);
-            return dateTime;
-        }
-
         private bool UpdateExistingBid(Bid newbid)
         {
             int idx = ListBids.FindIndex(a => a.Character == newbid.Character && a.Item == newbid.Item);
             if(idx == -1) { return false; }
             if(newbid.Amount < 1) { ListBids.RemoveAt(idx); return true; }
             ListBids[idx].Amount = newbid.Amount;
-            ListBids[idx].BidTime = newbid.BidTime;
             ListBids[idx].modifiers = newbid.modifiers;
             return true;
         }
@@ -654,5 +656,18 @@ namespace RaiidManagementApp
             cmd.Dispose();
             return dkp;
         }
+
+        private void checkBoxAttendence_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBoxAttendence.Checked)
+            {
+                //CheckBoxUseExistingSched.Enabled = true;
+            }
+            else
+            {
+                //CheckBoxUseExistingSched.Checked = false;
+                //CheckBoxUseExistingSched.Enabled = false;
+            }
+        }       
     }    
 }

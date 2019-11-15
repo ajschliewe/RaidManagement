@@ -64,6 +64,9 @@
             this.ButtonRemoveItem = new System.Windows.Forms.Button();
             this.ButtonClearList = new System.Windows.Forms.Button();
             this.ButtonResetAll = new System.Windows.Forms.Button();
+            this.CheckBoxUseExistingSched = new System.Windows.Forms.CheckBox();
+            this.ListBoxInvalidBids = new System.Windows.Forms.ListBox();
+            this.labelInvalidBid = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DKPAward)).BeginInit();
@@ -185,6 +188,7 @@
             this.checkBoxAttendence.TabIndex = 4;
             this.checkBoxAttendence.Text = "Include Attendence";
             this.checkBoxAttendence.UseVisualStyleBackColor = true;
+            this.checkBoxAttendence.CheckedChanged += new System.EventHandler(this.checkBoxAttendence_CheckedChanged);
             // 
             // buttonImportRaidDump
             // 
@@ -231,7 +235,7 @@
             // 
             this.checkBoxWaitlist.AutoSize = true;
             this.checkBoxWaitlist.Enabled = false;
-            this.checkBoxWaitlist.Location = new System.Drawing.Point(958, 187);
+            this.checkBoxWaitlist.Location = new System.Drawing.Point(980, 206);
             this.checkBoxWaitlist.Name = "checkBoxWaitlist";
             this.checkBoxWaitlist.Size = new System.Drawing.Size(108, 19);
             this.checkBoxWaitlist.TabIndex = 8;
@@ -240,7 +244,7 @@
             // 
             // buttonBidState
             // 
-            this.buttonBidState.Location = new System.Drawing.Point(433, 32);
+            this.buttonBidState.Location = new System.Drawing.Point(519, 32);
             this.buttonBidState.Name = "buttonBidState";
             this.buttonBidState.Size = new System.Drawing.Size(141, 43);
             this.buttonBidState.TabIndex = 9;
@@ -254,16 +258,16 @@
             // 
             // txtAddItem
             // 
-            this.txtAddItem.Location = new System.Drawing.Point(519, 151);
+            this.txtAddItem.Location = new System.Drawing.Point(519, 107);
             this.txtAddItem.Name = "txtAddItem";
             this.txtAddItem.Size = new System.Drawing.Size(264, 21);
             this.txtAddItem.TabIndex = 11;
             // 
             // ButtonAddItem
             // 
-            this.ButtonAddItem.Location = new System.Drawing.Point(708, 178);
+            this.ButtonAddItem.Location = new System.Drawing.Point(698, 134);
             this.ButtonAddItem.Name = "ButtonAddItem";
-            this.ButtonAddItem.Size = new System.Drawing.Size(75, 23);
+            this.ButtonAddItem.Size = new System.Drawing.Size(85, 25);
             this.ButtonAddItem.TabIndex = 12;
             this.ButtonAddItem.Text = "Add Item";
             this.ButtonAddItem.UseVisualStyleBackColor = true;
@@ -273,7 +277,7 @@
             // 
             this.listBoxItems.FormattingEnabled = true;
             this.listBoxItems.ItemHeight = 15;
-            this.listBoxItems.Location = new System.Drawing.Point(519, 222);
+            this.listBoxItems.Location = new System.Drawing.Point(519, 164);
             this.listBoxItems.Name = "listBoxItems";
             this.listBoxItems.Size = new System.Drawing.Size(264, 109);
             this.listBoxItems.Sorted = true;
@@ -281,7 +285,7 @@
             // 
             // ButtonBidPrep
             // 
-            this.ButtonBidPrep.Location = new System.Drawing.Point(519, 337);
+            this.ButtonBidPrep.Location = new System.Drawing.Point(520, 279);
             this.ButtonBidPrep.Name = "ButtonBidPrep";
             this.ButtonBidPrep.Size = new System.Drawing.Size(153, 32);
             this.ButtonBidPrep.TabIndex = 14;
@@ -400,9 +404,9 @@
             // 
             // ButtonRemoveItem
             // 
-            this.ButtonRemoveItem.Location = new System.Drawing.Point(610, 178);
+            this.ButtonRemoveItem.Location = new System.Drawing.Point(600, 134);
             this.ButtonRemoveItem.Name = "ButtonRemoveItem";
-            this.ButtonRemoveItem.Size = new System.Drawing.Size(92, 23);
+            this.ButtonRemoveItem.Size = new System.Drawing.Size(92, 25);
             this.ButtonRemoveItem.TabIndex = 16;
             this.ButtonRemoveItem.Text = "Remove Item";
             this.ButtonRemoveItem.UseVisualStyleBackColor = true;
@@ -410,9 +414,9 @@
             // 
             // ButtonClearList
             // 
-            this.ButtonClearList.Location = new System.Drawing.Point(519, 179);
+            this.ButtonClearList.Location = new System.Drawing.Point(519, 134);
             this.ButtonClearList.Name = "ButtonClearList";
-            this.ButtonClearList.Size = new System.Drawing.Size(75, 23);
+            this.ButtonClearList.Size = new System.Drawing.Size(75, 25);
             this.ButtonClearList.TabIndex = 17;
             this.ButtonClearList.Text = "Clear List";
             this.ButtonClearList.UseVisualStyleBackColor = true;
@@ -420,7 +424,7 @@
             // 
             // ButtonResetAll
             // 
-            this.ButtonResetAll.Location = new System.Drawing.Point(679, 338);
+            this.ButtonResetAll.Location = new System.Drawing.Point(679, 280);
             this.ButtonResetAll.Name = "ButtonResetAll";
             this.ButtonResetAll.Size = new System.Drawing.Size(104, 31);
             this.ButtonResetAll.TabIndex = 18;
@@ -428,12 +432,44 @@
             this.ButtonResetAll.UseVisualStyleBackColor = true;
             this.ButtonResetAll.Click += new System.EventHandler(this.ButtonResetAll_Click);
             // 
+            // CheckBoxUseExistingSched
+            // 
+            this.CheckBoxUseExistingSched.AutoSize = true;
+            this.CheckBoxUseExistingSched.Enabled = false;
+            this.CheckBoxUseExistingSched.Location = new System.Drawing.Point(980, 178);
+            this.CheckBoxUseExistingSched.Name = "CheckBoxUseExistingSched";
+            this.CheckBoxUseExistingSched.Size = new System.Drawing.Size(159, 19);
+            this.CheckBoxUseExistingSched.TabIndex = 19;
+            this.CheckBoxUseExistingSched.Text = "Use Last Schedule Entry";
+            this.CheckBoxUseExistingSched.UseVisualStyleBackColor = true;
+            // 
+            // ListBoxInvalidBids
+            // 
+            this.ListBoxInvalidBids.FormattingEnabled = true;
+            this.ListBoxInvalidBids.ItemHeight = 15;
+            this.ListBoxInvalidBids.Location = new System.Drawing.Point(519, 329);
+            this.ListBoxInvalidBids.Name = "ListBoxInvalidBids";
+            this.ListBoxInvalidBids.Size = new System.Drawing.Size(264, 139);
+            this.ListBoxInvalidBids.TabIndex = 20;
+            // 
+            // labelInvalidBid
+            // 
+            this.labelInvalidBid.AutoSize = true;
+            this.labelInvalidBid.Location = new System.Drawing.Point(517, 314);
+            this.labelInvalidBid.Name = "labelInvalidBid";
+            this.labelInvalidBid.Size = new System.Drawing.Size(69, 15);
+            this.labelInvalidBid.TabIndex = 21;
+            this.labelInvalidBid.Text = "Invalid Bids";
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1139, 512);
+            this.Controls.Add(this.labelInvalidBid);
+            this.Controls.Add(this.ListBoxInvalidBids);
+            this.Controls.Add(this.CheckBoxUseExistingSched);
             this.Controls.Add(this.ButtonResetAll);
             this.Controls.Add(this.ButtonClearList);
             this.Controls.Add(this.ButtonRemoveItem);
@@ -516,6 +552,9 @@
         private System.Windows.Forms.Button ButtonRemoveItem;
         private System.Windows.Forms.Button ButtonClearList;
         private System.Windows.Forms.Button ButtonResetAll;
+        private System.Windows.Forms.CheckBox CheckBoxUseExistingSched;
+        private System.Windows.Forms.ListBox ListBoxInvalidBids;
+        private System.Windows.Forms.Label labelInvalidBid;
     }
 }
 

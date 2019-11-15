@@ -11,8 +11,7 @@ namespace RaiidManagementApp
         public string Character;
         public string Item;
         public int? Amount;
-        public string modifiers;
-        public DateTime BidTime;        
+        public string modifiers;      
 
         public bool forAlt
         {
