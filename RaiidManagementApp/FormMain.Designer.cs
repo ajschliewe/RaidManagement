@@ -88,7 +88,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(14, 5, 0, 5);
-            this.menuStrip1.Size = new System.Drawing.Size(1139, 29);
+            this.menuStrip1.Size = new System.Drawing.Size(1030, 34);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -97,13 +97,13 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 19);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(116, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // editToolStripMenuItem
@@ -111,13 +111,13 @@
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.charactersToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 19);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(49, 24);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // viewToolStripMenuItem
             // 
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(44, 19);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.viewToolStripMenuItem.Text = "View";
             // 
             // optionsToolStripMenuItem
@@ -125,13 +125,13 @@
             this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem});
             this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
-            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 19);
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
             this.optionsToolStripMenuItem.Text = "Options";
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(145, 26);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -142,30 +142,30 @@
             this.toolStripRaidStatus,
             this.toolStripOpenRaidInfo});
             this.statusStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.statusStrip1.Location = new System.Drawing.Point(0, 490);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 473);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 16, 0);
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.statusStrip1.Size = new System.Drawing.Size(1139, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1030, 26);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripRaidStatus
             // 
             this.toolStripRaidStatus.Name = "toolStripRaidStatus";
-            this.toolStripRaidStatus.Size = new System.Drawing.Size(65, 17);
+            this.toolStripRaidStatus.Size = new System.Drawing.Size(83, 20);
             this.toolStripRaidStatus.Text = "Raid Status";
             this.toolStripRaidStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // toolStripOpenRaidInfo
             // 
             this.toolStripOpenRaidInfo.Name = "toolStripOpenRaidInfo";
-            this.toolStripOpenRaidInfo.Size = new System.Drawing.Size(140, 17);
+            this.toolStripOpenRaidInfo.Size = new System.Drawing.Size(174, 20);
             this.toolStripOpenRaidInfo.Text = "Current Open Raid: None";
             // 
             // buttonRaid
             // 
-            this.buttonRaid.Location = new System.Drawing.Point(958, 54);
+            this.buttonRaid.Location = new System.Drawing.Point(819, 54);
             this.buttonRaid.Name = "buttonRaid";
             this.buttonRaid.Size = new System.Drawing.Size(169, 44);
             this.buttonRaid.TabIndex = 2;
@@ -175,9 +175,9 @@
             // 
             // labelDKPheader
             // 
-            this.labelDKPheader.Location = new System.Drawing.Point(910, 116);
+            this.labelDKPheader.Location = new System.Drawing.Point(816, 102);
             this.labelDKPheader.Name = "labelDKPheader";
-            this.labelDKPheader.Size = new System.Drawing.Size(217, 27);
+            this.labelDKPheader.Size = new System.Drawing.Size(114, 27);
             this.labelDKPheader.TabIndex = 3;
             this.labelDKPheader.Text = "DKP Awards";
             this.labelDKPheader.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -185,9 +185,9 @@
             // checkBoxAttendence
             // 
             this.checkBoxAttendence.AutoSize = true;
-            this.checkBoxAttendence.Location = new System.Drawing.Point(958, 147);
+            this.checkBoxAttendence.Location = new System.Drawing.Point(819, 132);
             this.checkBoxAttendence.Name = "checkBoxAttendence";
-            this.checkBoxAttendence.Size = new System.Drawing.Size(130, 19);
+            this.checkBoxAttendence.Size = new System.Drawing.Size(153, 22);
             this.checkBoxAttendence.TabIndex = 4;
             this.checkBoxAttendence.Text = "Include Attendence";
             this.checkBoxAttendence.UseVisualStyleBackColor = true;
@@ -195,9 +195,9 @@
             // 
             // buttonImportRaidDump
             // 
-            this.buttonImportRaidDump.Location = new System.Drawing.Point(863, 231);
+            this.buttonImportRaidDump.Location = new System.Drawing.Point(819, 255);
             this.buttonImportRaidDump.Name = "buttonImportRaidDump";
-            this.buttonImportRaidDump.Size = new System.Drawing.Size(264, 38);
+            this.buttonImportRaidDump.Size = new System.Drawing.Size(169, 38);
             this.buttonImportRaidDump.TabIndex = 5;
             this.buttonImportRaidDump.Text = "Import Dump File";
             this.buttonImportRaidDump.UseVisualStyleBackColor = true;
@@ -205,7 +205,7 @@
             // 
             // DKPAward
             // 
-            this.DKPAward.Location = new System.Drawing.Point(998, 275);
+            this.DKPAward.Location = new System.Drawing.Point(881, 215);
             this.DKPAward.Maximum = new decimal(new int[] {
             20,
             0,
@@ -217,7 +217,7 @@
             0,
             0});
             this.DKPAward.Name = "DKPAward";
-            this.DKPAward.Size = new System.Drawing.Size(42, 21);
+            this.DKPAward.Size = new System.Drawing.Size(42, 24);
             this.DKPAward.TabIndex = 6;
             this.DKPAward.Value = new decimal(new int[] {
             1,
@@ -228,9 +228,9 @@
             // labelDKPAmount
             // 
             this.labelDKPAmount.AutoSize = true;
-            this.labelDKPAmount.Location = new System.Drawing.Point(933, 277);
+            this.labelDKPAmount.Location = new System.Drawing.Point(816, 221);
             this.labelDKPAmount.Name = "labelDKPAmount";
-            this.labelDKPAmount.Size = new System.Drawing.Size(49, 15);
+            this.labelDKPAmount.Size = new System.Drawing.Size(59, 18);
             this.labelDKPAmount.TabIndex = 7;
             this.labelDKPAmount.Text = "Amount";
             // 
@@ -238,16 +238,16 @@
             // 
             this.checkBoxWaitlist.AutoSize = true;
             this.checkBoxWaitlist.Enabled = false;
-            this.checkBoxWaitlist.Location = new System.Drawing.Point(980, 206);
+            this.checkBoxWaitlist.Location = new System.Drawing.Point(819, 192);
             this.checkBoxWaitlist.Name = "checkBoxWaitlist";
-            this.checkBoxWaitlist.Size = new System.Drawing.Size(108, 19);
+            this.checkBoxWaitlist.Size = new System.Drawing.Size(128, 22);
             this.checkBoxWaitlist.TabIndex = 8;
             this.checkBoxWaitlist.Text = "Include Waitlist";
             this.checkBoxWaitlist.UseVisualStyleBackColor = true;
             // 
             // buttonBidState
             // 
-            this.buttonBidState.Location = new System.Drawing.Point(519, 32);
+            this.buttonBidState.Location = new System.Drawing.Point(575, 54);
             this.buttonBidState.Name = "buttonBidState";
             this.buttonBidState.Size = new System.Drawing.Size(141, 43);
             this.buttonBidState.TabIndex = 9;
@@ -263,7 +263,7 @@
             // 
             this.txtAddItem.Location = new System.Drawing.Point(519, 107);
             this.txtAddItem.Name = "txtAddItem";
-            this.txtAddItem.Size = new System.Drawing.Size(264, 21);
+            this.txtAddItem.Size = new System.Drawing.Size(264, 24);
             this.txtAddItem.TabIndex = 11;
             // 
             // ButtonAddItem
@@ -279,10 +279,10 @@
             // listBoxItems
             // 
             this.listBoxItems.FormattingEnabled = true;
-            this.listBoxItems.ItemHeight = 15;
+            this.listBoxItems.ItemHeight = 18;
             this.listBoxItems.Location = new System.Drawing.Point(519, 164);
             this.listBoxItems.Name = "listBoxItems";
-            this.listBoxItems.Size = new System.Drawing.Size(264, 109);
+            this.listBoxItems.Size = new System.Drawing.Size(264, 94);
             this.listBoxItems.Sorted = true;
             this.listBoxItems.TabIndex = 13;
             // 
@@ -300,7 +300,7 @@
             // 
             this.TabItems.Controls.Add(this.Tab1);
             this.TabItems.ItemSize = new System.Drawing.Size(150, 20);
-            this.TabItems.Location = new System.Drawing.Point(13, 125);
+            this.TabItems.Location = new System.Drawing.Point(12, 107);
             this.TabItems.Multiline = true;
             this.TabItems.Name = "TabItems";
             this.TabItems.SelectedIndex = 0;
@@ -338,6 +338,7 @@
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.Size = new System.Drawing.Size(461, 315);
             this.dataGridView1.TabIndex = 0;
@@ -346,64 +347,71 @@
             // 
             this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column1.HeaderText = "Name";
+            this.Column1.MinimumWidth = 6;
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column1.Width = 47;
+            this.Column1.Width = 54;
             // 
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column2.HeaderText = "Bid";
+            this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column2.Width = 31;
+            this.Column2.Width = 35;
             // 
             // Column3
             // 
             this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column3.HeaderText = "Status";
+            this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
             this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column3.Width = 47;
+            this.Column3.Width = 56;
             // 
             // Column4
             // 
             this.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column4.HeaderText = "DKP";
+            this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column4.Width = 38;
+            this.Column4.Width = 45;
             // 
             // Column5
             // 
             this.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column5.HeaderText = "30 Day";
+            this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column5.Width = 51;
+            this.Column5.Width = 60;
             // 
             // Column6
             // 
             this.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column6.HeaderText = "60 Day";
+            this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
             this.Column6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column6.Width = 51;
+            this.Column6.Width = 60;
             // 
             // Column7
             // 
             this.Column7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Column7.HeaderText = "90 Day";
+            this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
             this.Column7.ReadOnly = true;
             this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column7.Width = 51;
+            this.Column7.Width = 60;
             // 
             // ButtonRemoveItem
             // 
@@ -439,9 +447,9 @@
             // 
             this.CheckBoxUseExistingSched.AutoSize = true;
             this.CheckBoxUseExistingSched.Enabled = false;
-            this.CheckBoxUseExistingSched.Location = new System.Drawing.Point(980, 178);
+            this.CheckBoxUseExistingSched.Location = new System.Drawing.Point(819, 164);
             this.CheckBoxUseExistingSched.Name = "CheckBoxUseExistingSched";
-            this.CheckBoxUseExistingSched.Size = new System.Drawing.Size(159, 19);
+            this.CheckBoxUseExistingSched.Size = new System.Drawing.Size(192, 22);
             this.CheckBoxUseExistingSched.TabIndex = 19;
             this.CheckBoxUseExistingSched.Text = "Use Last Schedule Entry";
             this.CheckBoxUseExistingSched.UseVisualStyleBackColor = true;
@@ -449,10 +457,10 @@
             // ListBoxInvalidBids
             // 
             this.ListBoxInvalidBids.FormattingEnabled = true;
-            this.ListBoxInvalidBids.ItemHeight = 15;
+            this.ListBoxInvalidBids.ItemHeight = 18;
             this.ListBoxInvalidBids.Location = new System.Drawing.Point(519, 329);
             this.ListBoxInvalidBids.Name = "ListBoxInvalidBids";
-            this.ListBoxInvalidBids.Size = new System.Drawing.Size(264, 139);
+            this.ListBoxInvalidBids.Size = new System.Drawing.Size(264, 130);
             this.ListBoxInvalidBids.TabIndex = 20;
             // 
             // labelInvalidBid
@@ -460,7 +468,7 @@
             this.labelInvalidBid.AutoSize = true;
             this.labelInvalidBid.Location = new System.Drawing.Point(517, 314);
             this.labelInvalidBid.Name = "labelInvalidBid";
-            this.labelInvalidBid.Size = new System.Drawing.Size(69, 15);
+            this.labelInvalidBid.Size = new System.Drawing.Size(81, 18);
             this.labelInvalidBid.TabIndex = 21;
             this.labelInvalidBid.Text = "Invalid Bids";
             // 
@@ -473,10 +481,10 @@
             // 
             // FrmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1139, 512);
+            this.ClientSize = new System.Drawing.Size(1030, 499);
             this.Controls.Add(this.labelInvalidBid);
             this.Controls.Add(this.ListBoxInvalidBids);
             this.Controls.Add(this.CheckBoxUseExistingSched);
