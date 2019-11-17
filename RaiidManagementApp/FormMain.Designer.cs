@@ -67,6 +67,7 @@
             this.CheckBoxUseExistingSched = new System.Windows.Forms.CheckBox();
             this.ListBoxInvalidBids = new System.Windows.Forms.ListBox();
             this.labelInvalidBid = new System.Windows.Forms.Label();
+            this.charactersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DKPAward)).BeginInit();
@@ -107,6 +108,8 @@
             // 
             // editToolStripMenuItem
             // 
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.charactersToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 19);
             this.editToolStripMenuItem.Text = "Edit";
@@ -461,6 +464,13 @@
             this.labelInvalidBid.TabIndex = 21;
             this.labelInvalidBid.Text = "Invalid Bids";
             // 
+            // charactersToolStripMenuItem
+            // 
+            this.charactersToolStripMenuItem.Name = "charactersToolStripMenuItem";
+            this.charactersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.charactersToolStripMenuItem.Text = "Characters";
+            this.charactersToolStripMenuItem.Click += new System.EventHandler(this.charactersToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -555,6 +565,7 @@
         private System.Windows.Forms.CheckBox CheckBoxUseExistingSched;
         private System.Windows.Forms.ListBox ListBoxInvalidBids;
         private System.Windows.Forms.Label labelInvalidBid;
+        private System.Windows.Forms.ToolStripMenuItem charactersToolStripMenuItem;
     }
 }
 

@@ -476,6 +476,7 @@ namespace RaiidManagementApp
             int idx = bid.IndexOf("alt-");
             if ( idx >-1) 
             {
+                x.forAlt = true; 
                 string alt = bid.Substring(idx + 4, bid.IndexOf(' ', idx) - (idx + 4));
                 SqlCommand cmd = new SqlCommand("usp_CheckForOpenRaid", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -486,7 +487,7 @@ namespace RaiidManagementApp
 
                 }
                 cmd.Dispose();
-                x.modifiers = "Alt";
+                x.BidFor = alt;
             }
             return true;
         }
@@ -496,7 +497,8 @@ namespace RaiidManagementApp
             if(idx == -1) { return false; }
             if(newbid.Amount < 1) { ListBids.RemoveAt(idx); return true; }
             ListBids[idx].Amount = newbid.Amount;
-            ListBids[idx].modifiers = newbid.modifiers;
+            ListBids[idx].forAlt = newbid.forAlt;
+            ListBids[idx].BidFor = newbid.BidFor;
             return true;
         }
         private void ButtonBidPrep_Click(object sender, EventArgs e)
@@ -668,6 +670,13 @@ namespace RaiidManagementApp
                 //CheckBoxUseExistingSched.Checked = false;
                 //CheckBoxUseExistingSched.Enabled = false;
             }
-        }       
+        }
+
+        private void charactersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<Character> toons = new List<Character>();
+            
+            FrmNewCharacters frmX = new FrmNewCharacters(toons, GetStatusType(), GetMains());
+        }
     }    
 }

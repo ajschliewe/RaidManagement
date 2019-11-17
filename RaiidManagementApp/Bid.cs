@@ -11,13 +11,30 @@ namespace RaiidManagementApp
         public string Character;
         public string Item;
         public int? Amount;
-        public string modifiers;      
-
+        public string modifiers;
+        private string _altname;
+        private bool _forAlt = false;
         public bool forAlt
         {
             get
             {
-                if (modifiers.IndexOf("alt") > -1) { return true; } else { return false; }
+                return _forAlt;
+            }
+            set
+            {
+                _forAlt = value;
+            }
+        }
+
+        public string BidFor
+        {
+            get
+            {
+                return _altname;
+            }
+            set
+            {
+                _altname = value;
             }
         }
     }
